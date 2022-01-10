@@ -1,26 +1,47 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Header :showForm="showForm" :todos="todos" @toggle="toggle"/>
+  <Form :formInput="formInput" :showForm="showForm" @addTodo="addTodo"/>
+  <Todos :todos="todos" @delete-todo="deleteTodo"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Todos from './components/Todos'
+import Header from './components/Header'
+import Form from './components/Form'
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    Todos,
+    Header,
+    Form,
+  },
+  data() {
+    return {
+      showForm: true,
+      todos: []
+    }
+  },
+  created() {
+    this.todos = [
+      'Todo 01', 'Todo 02'
+    ]
+  },
+  methods: {
+    addTodo(formInput) {
+      if (formInput.length > 0) {
+        this.todos.push(formInput)
+      }
+    },
+    deleteTodo(index) {
+      this.todos.splice(index, 1)
+    },
+    toggle() {
+      this.showForm = !this.showForm
+    }
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
