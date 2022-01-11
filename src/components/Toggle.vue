@@ -1,5 +1,5 @@
 <template>
-  <button @click="$emit('toggle-form', showForm)">
+  <button @click="$emit('toggle-form')">
     {{ showForm ? "Hide" : "Show" }} Form
   </button>
 </template>

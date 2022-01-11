@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     toggle() {
-      this.$emit('toggle', this.showForm)
+      this.$emit('toggle')
     }
   }
 }
